@@ -18,6 +18,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     private var notificationManager: NotificationManager? = null
 
+    override fun onNewToken(p0: String) {
+        super.onNewToken(p0)
+    }
+
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
         Log.d("FCM Service", "From: " + remoteMessage.from)

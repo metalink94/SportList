@@ -1,5 +1,6 @@
 package com.sports.list.splash
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -28,7 +29,12 @@ class SplashViewModel(private var urlString: String): ViewModel() {
                 onDataBaseReceived(urlString, stub)
             }
 
-            override fun onCancelled(p0: DatabaseError) {}
+            override fun onCancelled(p0: DatabaseError) {
+                Log.e("Message", p0.message)
+                Log.e("Detail", p0.details)
+                Log.e("Code", "${p0.code}")
+                showStub.call()
+            }
         })
     }
 

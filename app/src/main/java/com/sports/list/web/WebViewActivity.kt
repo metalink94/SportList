@@ -1,4 +1,4 @@
-package com.sports.list
+package com.sports.list.web
 
 import android.Manifest
 import android.annotation.TargetApi
@@ -16,17 +16,18 @@ import android.webkit.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.sports.list.R
 import kotlinx.android.synthetic.main.activity_web.*
 
 class WebViewActivity : AppCompatActivity(R.layout.activity_web) {
 
-    var currentUrl: String = getString(R.string.url)
+    lateinit var currentUrl: String
     private var uploadMessage: ValueCallback<Array<Uri>>? = null
     private var mUploadMessage: ValueCallback<Uri>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        currentUrl = intent.getStringExtra(KEY_URL)
+        currentUrl = intent.getStringExtra(KEY_URL) ?: resources.getString(R.string.url)
         checkPermissions()
         initWebView()
         swipeRefresh.setOnRefreshListener {
@@ -66,7 +67,9 @@ class WebViewActivity : AppCompatActivity(R.layout.activity_web) {
                     intent = fileChooserParams?.createIntent()
                 }
                 try {
-                    startActivityForResult(intent, PICK_FROM_GALLERY_2)
+                    startActivityForResult(intent,
+                        PICK_FROM_GALLERY_2
+                    )
                 } catch (e: ActivityNotFoundException) {
                     uploadMessage = null
                     Toast.makeText(applicationContext, "Cannot Open File Chooser", Toast.LENGTH_LONG).show()
@@ -148,13 +151,13 @@ class WebViewActivity : AppCompatActivity(R.layout.activity_web) {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == Companion.PICK_FROM_GALLERY_2) {
+        if (requestCode == PICK_FROM_GALLERY_2) {
             if (uploadMessage == null) return
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 uploadMessage?.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(resultCode, data))
             }
             uploadMessage = null
-        } else if (requestCode == Companion.PICK_FROM_GALLERY_3) {
+        } else if (requestCode == PICK_FROM_GALLERY_3) {
             if (null == mUploadMessage) return
             val result = if (data == null || resultCode != RESULT_OK) {
                 null
@@ -178,7 +181,8 @@ class WebViewActivity : AppCompatActivity(R.layout.activity_web) {
         const val KEY_URL = "url"
 
         fun getInstance(context: Context, url: String?): Intent =
-            Intent(context, WebViewActivity::class.java).putExtra(KEY_URL, url)
+            Intent(context, WebViewActivity::class.java).putExtra(
+                KEY_URL, url)
 
         private const val PICK_FROM_GALLERY_3 = 3
         private const val PICK_FROM_GALLERY_2 = 2

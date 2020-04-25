@@ -1,4 +1,4 @@
-package com.sports.list
+package com.sports.list.web
 
 import android.net.http.SslError
 import android.webkit.SslErrorHandler
