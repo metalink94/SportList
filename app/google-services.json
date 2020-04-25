@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "458929247834",
+    "firebase_url": "https://sportlist-c6294.firebaseio.com",
+    "project_id": "sportlist-c6294",
+    "storage_bucket": "sportlist-c6294.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:458929247834:android:db75a9ada0a65e1c8fea63",
+        "android_client_info": {
+          "package_name": "com.sports.list"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "458929247834-f8qo7rq531rb89escp980s3cd1cjbb6g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkkof7s6cS0txnU81zGmaZVlT5I5s8J-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "458929247834-f8qo7rq531rb89escp980s3cd1cjbb6g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
